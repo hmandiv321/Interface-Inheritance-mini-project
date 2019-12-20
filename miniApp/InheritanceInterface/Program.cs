@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
+// Since the namespaces were not changed no need to add using statements 
+// After moving intrfaces and models to their respiective folders
 namespace InheritanceInterface
 {
-    class Program
+    partial class Program
     {
         static void Main(string[] args)
         {
@@ -70,86 +69,6 @@ namespace InheritanceInterface
             Console.WriteLine("Press enter to exit");
             
             Console.ReadLine();
-        }
-
-        public interface IInventoryItem
-        {
-            string ProductName { get; set; }
-            int QuantityInStock { get; set; }
-        }
-
-        public interface IRental : IInventoryItem
-        {
-            void Rent();
-            void ReturnRental();
-        }
-
-        public interface IPurchase : IInventoryItem
-        {
-            void PurchaseItem();
-        }
-
-        public class InventoryItemModel : IInventoryItem
-        {
-            public string ProductName { get; set; }
-            public int QuantityInStock { get; set; }
-        }
-
-        // Can Buy and Rent
-        public class VehicleModel : InventoryItemModel, IPurchase, IRental
-        {
-            public decimal DealerFee { get; set; }
-
-            public void PurchaseItem()
-            {
-                QuantityInStock -= 1;
-                Console.WriteLine("Vehical has been purchased!");
-            }
-
-            public void Rent()
-            {
-                QuantityInStock -= 1;
-                Console.WriteLine("Vehical has been rented!");
-            }
-
-            public void ReturnRental()
-            {
-                QuantityInStock += 1;
-                Console.WriteLine("Vehical has been returned!");
-            }
-        }
-
-        // Can only Buy
-        public class BookModel : InventoryItemModel, IPurchase
-        {
-            public int NumberOfPages { get; set; }
-
-            public void PurchaseItem()
-            {
-                QuantityInStock -= 1;
-                Console.WriteLine("Booked has been purchased!");
-            }
-        }
-
-        // Can only Rent
-        public class HouseModel : InventoryItemModel, IRental
-        {
-           public void print()
-            {
-                Console.WriteLine("I am a rented house");
-            }
-
-            public void Rent()
-            {
-                QuantityInStock -= 1;
-                Console.WriteLine("House has been rented");
-            }
-
-            public void ReturnRental()
-            {
-                QuantityInStock += 1;
-                Console.WriteLine("I have been Returned");
-            }
         }
 
     }
